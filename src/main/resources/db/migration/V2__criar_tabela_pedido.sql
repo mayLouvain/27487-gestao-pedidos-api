@@ -1,0 +1,8 @@
+CREATE TABLE pedidos (
+    id UUID PRIMARY KEY,
+    cpf VARCHAR(14) NOT NULL,
+    data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    data_alteracao TIMESTAMP,
+    valor_total DECIMAL(10,2) NOT NULL,
+    status VARCHAR(50) NOT NULL
+);
