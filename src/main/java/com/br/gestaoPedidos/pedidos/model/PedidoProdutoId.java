@@ -1,7 +1,6 @@
 package com.br.gestaoPedidos.pedidos.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 import jakarta.persistence.Embeddable;
 import lombok.Setter;
@@ -10,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class PedidoProdutoId {
 
-	private UUID pedidoId;
-	private UUID produtoId;
+	private Long pedidoId;
+	private Long produtoId;
 
 	@Override
 	public boolean equals(Object o) {
@@ -28,11 +27,11 @@ public class PedidoProdutoId {
 		return Objects.hash(pedidoId, produtoId);
 	}
 
-	public UUID getPedidoId() {
+	public Long getPedidoId() {
 		return pedidoId;
 	}
 
-	public UUID getProdutoId() {
+	public Long getProdutoId() {
 		return produtoId;
 	}
 

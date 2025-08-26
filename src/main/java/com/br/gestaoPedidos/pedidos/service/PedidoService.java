@@ -3,12 +3,13 @@ package com.br.gestaoPedidos.pedidos.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.br.gestaoPedidos.pedidos.exception.PedidoNaoEncontradoException;
 import com.br.gestaoPedidos.pedidos.model.PedidoModel;
 import com.br.gestaoPedidos.pedidos.repository.PedidoRepository;
+import com.br.gestaoPedidos.produtos.exception.ProdutoJaExisteException;
 import com.br.gestaoPedidos.produtos.repository.ProdutoRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,8 +30,9 @@ public class PedidoService {
 		return pedidoRepository.findAll();
 	}
 
-	public PedidoModel buscarPorId(UUID id) {
-		return pedidoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+	public PedidoModel buscarPorId(Long id) {
+		return pedidoRepository.findById(id)
+				.orElseThrow(() -> new PedidoNaoEncontradoException("pedido.naoEncontrado"));
 	}
 
 	public PedidoModel criar(PedidoModel pedido) {
@@ -43,10 +45,9 @@ public class PedidoService {
 		return pedidoRepository.save(pedido);
 	}
 
-	public PedidoModel alterar(UUID id, PedidoModel pedido) {
+	public PedidoModel alterar(Long id, PedidoModel pedido) {
 
-		PedidoModel pedidoExistente = pedidoRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+		PedidoModel pedidoExistente = buscarPorId(id);
 
 		pedido.setId(id);
 		pedido.setDataCriacao(pedidoExistente.getDataCriacao());
@@ -56,18 +57,18 @@ public class PedidoService {
 			atualizarCamposProdutosPedidos(pedido);
 		}
 
-
 		return pedidoRepository.save(pedido);
 
 	}
 
-	public void deletar(UUID id) {
+	public void deletar(Long id) {
 		pedidoRepository.deleteById(id);
 	}
 
 	private void atualizarCamposProdutosPedidos(PedidoModel pedido) {
 		pedido.getProdutos().stream().forEach(pedidoProduto -> {
-			var produto = produtoRepository.findById(pedidoProduto.getId().getProdutoId()).orElseThrow();
+			var produto = produtoRepository.findById(pedidoProduto.getId().getProdutoId())
+					.orElseThrow(() -> new ProdutoJaExisteException("produto.naoEncontrado"));
 			pedidoProduto.setPedido(pedido);
 			pedidoProduto.setProduto(produto);
 		});

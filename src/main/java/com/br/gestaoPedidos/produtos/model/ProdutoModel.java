@@ -2,7 +2,6 @@ package com.br.gestaoPedidos.produtos.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.br.gestaoPedidos.produtos.enums.CategoriaProduto;
 
@@ -10,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -18,8 +18,8 @@ import jakarta.persistence.Table;
 public class ProdutoModel {
 
 	@Id
-	@GeneratedValue
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String descricao;
 
@@ -32,11 +32,11 @@ public class ProdutoModel {
 	@Enumerated(EnumType.STRING)
 	private CategoriaProduto categoria;
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

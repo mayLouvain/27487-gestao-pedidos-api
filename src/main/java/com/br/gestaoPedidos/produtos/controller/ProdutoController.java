@@ -1,7 +1,6 @@
 package com.br.gestaoPedidos.produtos.controller;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,10 @@ import com.br.gestaoPedidos.produtos.service.ProdutoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/api/produtos")
 @Tag(name = "Produtos", description = "Operações de CRUD de Produtos")
 public class ProdutoController {
 
@@ -45,13 +45,13 @@ public class ProdutoController {
 
 	@GetMapping("/{id}")
 	@Operation(summary = "Busca um produto pelo identificador")
-	public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable UUID id) {
+	public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(produtoMapper.toResponseDTO(service.buscarPorId(id)));
 	}
 
 	@PostMapping(value = "/criar")
 	@Operation(summary = "Cria um novo produto")
-	public ResponseEntity<ProdutoResponseDTO> criar(@RequestBody ProdutoRequestDTO dto) {
+	public ResponseEntity<ProdutoResponseDTO> criar(@Valid @RequestBody ProdutoRequestDTO dto) {
 		var produtoModel = produtoMapper.toEntity(dto);
 		var produtoResponseDTO = produtoMapper.toResponseDTO(service.criar(produtoModel));
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoResponseDTO);
@@ -59,15 +59,15 @@ public class ProdutoController {
 
 	@PutMapping("/alterar/{id}")
 	@Operation(summary = "Atualiza um produto existente")
-	public ResponseEntity<ProdutoResponseDTO> alterar(@PathVariable UUID id, @RequestBody ProdutoRequestDTO dto) {
+	public ResponseEntity<ProdutoResponseDTO> alterar(@PathVariable Long id, @RequestBody ProdutoRequestDTO dto) {
 		var pedidoResponseDTO = produtoMapper.toResponseDTO(service.alterar(id, produtoMapper.toEntity(dto)));
 
 		return ResponseEntity.status(HttpStatus.OK).body(pedidoResponseDTO);
-		}
+	}
 
 	@DeleteMapping("/deletar/{id}")
 	@Operation(summary = "Deleta um produto existente")
-	public void deletar(@PathVariable UUID id) {
+	public void deletar(@PathVariable Long id) {
 		service.deletar(id);
 	}
 }

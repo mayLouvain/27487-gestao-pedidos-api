@@ -2,8 +2,7 @@ package com.br.gestaoPedidos.pedidos.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 import com.br.gestaoPedidos.pedidos.enums.StatusPedido;
 
@@ -12,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -21,8 +21,8 @@ import jakarta.persistence.Table;
 public class PedidoModel {
 
 	@Id
-	@GeneratedValue
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String cpf;
 
@@ -36,20 +36,20 @@ public class PedidoModel {
 	private StatusPedido status;
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<PedidoProdutoModel> produtos;
+	private List<PedidoProdutoModel> produtos;
 
-	public void atualizarProdutos(Set<PedidoProdutoModel> produtos) {
+	public void atualizarProdutos(List<PedidoProdutoModel> produtos) {
 		if (!this.produtos.isEmpty()) {
 			this.produtos.clear();
 			this.produtos.addAll(produtos);
 		}
 	}
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -93,11 +93,11 @@ public class PedidoModel {
 		this.status = status;
 	}
 
-	public Set<PedidoProdutoModel> getProdutos() {
+	public List<PedidoProdutoModel> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(Set<PedidoProdutoModel> produtos) {
+	public void setProdutos(List<PedidoProdutoModel> produtos) {
 		this.produtos = produtos;
 	}
 

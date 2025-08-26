@@ -1,5 +1,7 @@
 package com.br.gestaoPedidos.pedidos.model;
 
+import java.math.BigDecimal;
+
 import com.br.gestaoPedidos.produtos.model.ProdutoModel;
 
 import jakarta.persistence.EmbeddedId;
@@ -56,5 +58,17 @@ public class PedidoProdutoModel {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	// Getters Para Relatório
+	public BigDecimal getPrecoProduto() {
+	    return produto != null ? produto.getPreco() : BigDecimal.ZERO;
+	}
+	
+	public String getDescricaoProduto() {
+	    return produto != null ? produto.getDescricao() : "";
+	}
 
+	public String getCategoriaProduto() {
+	    return produto != null ? produto.getCategoria().toString() : "";
+	}
 }
