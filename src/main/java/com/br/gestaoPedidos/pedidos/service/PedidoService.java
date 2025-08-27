@@ -1,5 +1,6 @@
 package com.br.gestaoPedidos.pedidos.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.br.gestaoPedidos.pedidos.exception.PedidoNaoEncontradoException;
 import com.br.gestaoPedidos.pedidos.model.PedidoModel;
 import com.br.gestaoPedidos.pedidos.repository.PedidoRepository;
-import com.br.gestaoPedidos.produtos.exception.ProdutoJaExisteException;
+import com.br.gestaoPedidos.produtos.exception.ProdutoNaoEncontradoException;
 import com.br.gestaoPedidos.produtos.repository.ProdutoRepository;
 
 import jakarta.transaction.Transactional;
@@ -40,6 +41,7 @@ public class PedidoService {
 		pedido.setDataCriacao(LocalDateTime.now());
 		if (!Objects.isNull(pedido.getProdutos())) {
 			atualizarCamposProdutosPedidos(pedido);
+			pedido.setValorTotal(calcularValorTotal(pedido));
 		}
 
 		return pedidoRepository.save(pedido);
@@ -49,15 +51,18 @@ public class PedidoService {
 
 		PedidoModel pedidoExistente = buscarPorId(id);
 
-		pedido.setId(id);
-		pedido.setDataCriacao(pedidoExistente.getDataCriacao());
-		pedido.setDataAlteracao(LocalDateTime.now());
+		pedidoExistente.setCpf(pedido.getCpf());
+		pedidoExistente.setDataAlteracao(LocalDateTime.now());
+		pedidoExistente.setStatus(pedido.getStatus());
+		pedidoExistente.atualizarProdutos(pedido.getProdutos());
 
 		if (!Objects.isNull(pedido.getProdutos())) {
-			atualizarCamposProdutosPedidos(pedido);
+			atualizarCamposProdutosPedidos(pedidoExistente);
+			pedidoExistente.setValorTotal(calcularValorTotal(pedidoExistente));
+			pedidoExistente.getProdutos().addAll(pedido.getProdutos());
 		}
 
-		return pedidoRepository.save(pedido);
+		return pedidoRepository.save(pedidoExistente);
 
 	}
 
@@ -68,9 +73,16 @@ public class PedidoService {
 	private void atualizarCamposProdutosPedidos(PedidoModel pedido) {
 		pedido.getProdutos().stream().forEach(pedidoProduto -> {
 			var produto = produtoRepository.findById(pedidoProduto.getId().getProdutoId())
-					.orElseThrow(() -> new ProdutoJaExisteException("produto.naoEncontrado"));
+					.orElseThrow(() -> new ProdutoNaoEncontradoException("produto.naoEncontrado"));
 			pedidoProduto.setPedido(pedido);
 			pedidoProduto.setProduto(produto);
 		});
+	}
+
+	private BigDecimal calcularValorTotal(PedidoModel pedido) {
+		return pedido.getProdutos().stream()
+				.map(pedidoProduto -> pedidoProduto.getProduto().getPreco()
+						.multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())))
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 }

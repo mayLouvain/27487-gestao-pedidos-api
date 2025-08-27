@@ -41,8 +41,8 @@ public class PedidoModel {
 	public void atualizarProdutos(List<PedidoProdutoModel> produtos) {
 		if (!this.produtos.isEmpty()) {
 			this.produtos.clear();
-			this.produtos.addAll(produtos);
 		}
+		this.produtos.addAll(produtos);
 	}
 
 	public Long getId() {

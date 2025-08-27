@@ -15,6 +15,7 @@ public interface PedidoMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "dataCriacao", ignore = true)
 	@Mapping(target = "dataAlteracao", ignore = true)
+	@Mapping(target = "valorTotal", ignore = true)
 	PedidoModel toEntity(PedidoRequestDTO dto);
 
 }

@@ -7,8 +7,8 @@
 	<field name="categoriaProduto" class="java.lang.String"/>
 	<field name="quantidade" class="java.lang.Integer"/>
 	<background splitType="Stretch"/>
-	<columnHeader height="35" splitType="Stretch">
-		<element kind="staticText" uuid="bfc8f50e-5213-4cc6-8d9d-b5ea5aa476be" x="2" y="4" width="150" height="21" vTextAlign="Middle">
+	<columnHeader height="21" splitType="Stretch">
+		<element kind="staticText" uuid="bfc8f50e-5213-4cc6-8d9d-b5ea5aa476be" x="0" y="0" width="150" height="21" vTextAlign="Middle">
 			<text><![CDATA[Descrição]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -17,8 +17,8 @@
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="fb752181-cd3a-4d94-9622-8892dffa42f6" x="153" y="4" width="110" height="21" vTextAlign="Middle">
-			<text><![CDATA[Preço
+		<element kind="staticText" uuid="fb752181-cd3a-4d94-9622-8892dffa42f6" x="150" y="0" width="110" height="21" vTextAlign="Middle">
+			<text><![CDATA[  Preço
 ]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -27,7 +27,7 @@
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="9987ae50-c546-4a66-bbfd-3f234a6fe6a5" x="267" y="5" width="110" height="21" vTextAlign="Middle">
+		<element kind="staticText" uuid="9987ae50-c546-4a66-bbfd-3f234a6fe6a5" x="260" y="0" width="117" height="21" vTextAlign="Middle">
 			<text><![CDATA[Categoria Produto]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -36,7 +36,7 @@
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="8a50c208-66f8-4394-9619-4416b490bae0" x="383" y="3" width="110" height="21" vTextAlign="Middle">
+		<element kind="staticText" uuid="8a50c208-66f8-4394-9619-4416b490bae0" x="377" y="0" width="116" height="21" vTextAlign="Middle">
 			<text><![CDATA[Quantidade]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -47,8 +47,8 @@
 		</element>
 	</columnHeader>
 	<detail>
-		<band height="54" splitType="Stretch">
-			<element kind="textField" uuid="323d05ad-d252-4433-8c71-1a395a74192b" x="14" y="19" width="150" height="20" vTextAlign="Middle">
+		<band height="20" splitType="Stretch">
+			<element kind="textField" uuid="323d05ad-d252-4433-8c71-1a395a74192b" x="0" y="0" width="150" height="20" vTextAlign="Middle">
 				<expression><![CDATA[$F{descricaoProduto}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -57,7 +57,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="644d9ff5-7239-4780-a982-9a130709fbfa" x="172" y="20" width="110" height="20" vTextAlign="Middle">
+			<element kind="textField" uuid="644d9ff5-7239-4780-a982-9a130709fbfa" x="150" y="0" width="110" height="20" vTextAlign="Middle">
 				<expression><![CDATA[$F{precoProduto}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -66,7 +66,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="a988f7d5-18c4-4e0f-94e5-a1cb6cc46d69" x="300" y="30" width="110" height="20" vTextAlign="Middle">
+			<element kind="textField" uuid="a988f7d5-18c4-4e0f-94e5-a1cb6cc46d69" x="260" y="0" width="117" height="20" vTextAlign="Middle">
 				<expression><![CDATA[$F{categoriaProduto}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -75,7 +75,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="bdcaf4b2-06dc-4b14-968c-a204223c924e" x="440" y="17" width="110" height="20" vTextAlign="Middle">
+			<element kind="textField" uuid="bdcaf4b2-06dc-4b14-968c-a204223c924e" x="377" y="0" width="116" height="20" vTextAlign="Middle">
 				<expression><![CDATA[$F{quantidade}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
