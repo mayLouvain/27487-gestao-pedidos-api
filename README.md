@@ -81,4 +81,5 @@ Os relatórios foram desenvolvidos utilizando **JasperReports** e estão localiz
 ---
 
 ## Como rodar testes
-  Os testes não foram implementados , porém utilizaria o JUNIT com banco em memória H2 ou o Mockito
+- Os testes não foram implementados , porém utilizaria o JUNIT com banco em memória H2 ou o Mockito. 
+- Os testes seguiriam a mesma estrutura realizada de **Package by Feature** realizada no src/main/java .
