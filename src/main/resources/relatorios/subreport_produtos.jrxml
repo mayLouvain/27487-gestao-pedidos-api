@@ -1,33 +1,53 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
-<jasperReport name="produtos" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="866b40e6-b992-4c09-8ef7-4279d21f7ddb">
+<jasperReport name="subreport_produtos" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2cd56e8-ffc2-4ffd-93b8-09df0bdb5d23">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="produtos" class="java.util.Collection"/>
 	<query language="sql"><![CDATA[]]></query>
 	<field name="descricaoProduto" class="java.lang.String"/>
 	<field name="precoProduto" class="java.math.BigDecimal"/>
 	<field name="categoriaProduto" class="java.lang.String"/>
 	<field name="quantidade" class="java.lang.Integer"/>
 	<background splitType="Stretch"/>
-	<pageHeader height="141">
-		<element kind="staticText" uuid="8649fc9b-adf8-40e9-8224-b903155bf9bf" x="0" y="10" width="150" height="21" vTextAlign="Middle">
-			<text><![CDATA[Descrição]]></text>
+	<columnHeader height="42" splitType="Stretch">
+		<element kind="staticText" uuid="bfc8f50e-5213-4cc6-8d9d-b5ea5aa476be" mode="Opaque" x="0" y="21" width="150" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[  Descrição]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
 				<leftPen lineWidth="0.5"/>
 				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="2b38475a-4ed2-4159-b836-0ebdcb5848db" x="160" y="21" width="110" height="21" vTextAlign="Middle">
-			<text><![CDATA[Preço
+		<element kind="staticText" uuid="fb752181-cd3a-4d94-9622-8892dffa42f6" mode="Opaque" x="150" y="21" width="110" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[  Preço
 ]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
+				<leftPen lineWidth="0.0"/>
+				<bottomPen lineWidth="0.5"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="9987ae50-c546-4a66-bbfd-3f234a6fe6a5" mode="Opaque" x="260" y="21" width="117" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[  Categoria Produto]]></text>
+			<box>
+				<topPen lineWidth="0.5" lineStyle="Solid"/>
+				<leftPen lineWidth="0.0"/>
+				<bottomPen lineWidth="0.5"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="8a50c208-66f8-4394-9619-4416b490bae0" mode="Opaque" x="377" y="21" width="116" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[  Quantidade]]></text>
+			<box>
+				<topPen lineWidth="0.5" lineStyle="Solid"/>
+				<leftPen lineWidth="0.0"/>
 				<bottomPen lineWidth="0.5"/>
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="0c2144b4-fae3-4f95-961b-524c4131cf50" x="270" y="21" width="110" height="21" vTextAlign="Middle">
-			<text><![CDATA[Categoria Produto]]></text>
+		<element kind="staticText" uuid="57cc6007-ccd7-4112-8375-6cc26c351f94" mode="Opaque" x="0" y="0" width="493" height="21" backcolor="#F7F7F7" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Produtos]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
 				<leftPen lineWidth="0.5"/>
@@ -35,50 +55,45 @@
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="b7a4b100-0bf8-46d4-bada-ee65d4399d55" x="380" y="11" width="110" height="21" vTextAlign="Middle">
-			<text><![CDATA[Quantidade]]></text>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="5ffb7360-ef0d-4f0c-a22c-d314ac73e913" x="0" y="47" width="150" height="20" vTextAlign="Middle">
-			<expression><![CDATA[$F{descricaoProduto}]]></expression>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="861ece03-90e9-4ade-b37c-53fb69183fa2" x="160" y="47" width="110" height="20" vTextAlign="Middle">
-			<expression><![CDATA[$F{precoProduto}]]></expression>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="0771d8a5-9099-4259-b030-2bd890abc158" x="270" y="47" width="110" height="20" vTextAlign="Middle">
-			<expression><![CDATA[$F{categoriaProduto}]]></expression>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="textField" uuid="552ac408-1a41-4bef-89c1-aaa6d95860ea" x="390" y="47" width="110" height="20" vTextAlign="Middle">
-			<expression><![CDATA[$F{quantidade}]]></expression>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-	</pageHeader>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<element kind="textField" uuid="323d05ad-d252-4433-8c71-1a395a74192b" x="0" y="0" width="150" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " + $F{descricaoProduto}]]></expression>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="644d9ff5-7239-4780-a982-9a130709fbfa" x="150" y="0" width="110" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " + String.format("R$ %.2f",$F{precoProduto})]]></expression>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="a988f7d5-18c4-4e0f-94e5-a1cb6cc46d69" x="260" y="0" width="117" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " + $F{categoriaProduto}]]></expression>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="bdcaf4b2-06dc-4b14-968c-a204223c924e" x="377" y="0" width="116" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " + $F{quantidade}]]></expression>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+			</element>
+		</band>
+	</detail>
 </jasperReport>

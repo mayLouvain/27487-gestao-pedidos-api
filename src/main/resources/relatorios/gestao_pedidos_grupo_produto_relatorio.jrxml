@@ -1,0 +1,74 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="gestao_pedidos_grupo_produto_relatorio" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c9fc403-06df-4225-84b1-cdece681c00f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="produtos" class="java.util.Collection"/>
+	<parameter name="subreport_pedidos" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="pedidos" class="java.util.Collection"/>
+	<field name="produto.descricao" class="java.lang.String"/>
+	<field name="produto.id" class="java.lang.Long"/>
+	<field name="produto.preco" class="java.math.BigDecimal"/>
+	<field name="produto.categoriaFormatada" class="java.lang.String"/>
+	<field name="produto.dataCriacaoFormatada" class="java.lang.String"/>
+	<field name="produto" class="java.lang.Object"/>
+	<background splitType="Stretch"/>
+	<title height="55" splitType="Stretch">
+		<element kind="staticText" uuid="3caea848-f545-43fd-b0ca-d15665989bac" x="180" y="20" width="211" height="19" bold="true" hTextAlign="Center">
+			<text><![CDATA[Relatório de Pedidos]]></text>
+		</element>
+	</title>
+	<pageHeader height="46" splitType="Stretch">
+		<element kind="staticText" uuid="92122cca-7fa5-43c2-95a0-dcac3f06339a" x="0" y="5" width="60" height="19" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[  Período]]></text>
+		</element>
+		<element kind="textField" uuid="54077481-9133-468f-aeb1-743ce509f093" x="60" y="5" width="430" height="19" vTextAlign="Middle">
+			<expression><![CDATA["  " + $P{periodo}]]></expression>
+		</element>
+	</pageHeader>
+	<detail>
+		<band height="94" splitType="Stretch">
+			<element kind="rectangle" uuid="a427c3de-ff34-4ee1-8b6f-2ea8da983ff9" x="0" y="0" width="560" height="20" backcolor="#C2B3C9"/>
+			<element kind="subreport" uuid="0804a919-6748-4b73-bab8-3b9a4b7d2c27" x="-1" y="60" width="575" height="30">
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{pedidos})
+]]></dataSourceExpression>
+				<expression><![CDATA[$P{subreport_pedidos}]]></expression>
+			</element>
+			<element kind="staticText" uuid="5f4f7c57-425e-47d8-852c-0f85990c6b59" x="0" y="0" width="560" height="20" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<text><![CDATA[  Produto]]></text>
+			</element>
+			<element kind="textField" uuid="eebd3acc-9950-4e0d-a2f8-48db9384af64" x="59" y="22" width="151" height="18" vTextAlign="Middle">
+				<expression><![CDATA["  " +$F{produto.descricao}]]></expression>
+			</element>
+			<element kind="staticText" uuid="6aa40b06-9f13-4fbf-af08-72c4113a6d7d" x="0" y="22" width="50" height="18" bold="false" vTextAlign="Middle">
+				<text><![CDATA[Descrição]]></text>
+			</element>
+			<element kind="textField" uuid="bc61be98-e5ff-4d0e-824b-8789ee3fd6ce" x="70" y="0" width="100" height="20" bold="true" hTextAlign="Left" vTextAlign="Middle">
+				<expression><![CDATA[$F{produto.id}]]></expression>
+			</element>
+			<element kind="staticText" uuid="32c96d61-7add-4174-bf98-3fefd55e06a8" x="0" y="40" width="50" height="20" bold="false" vTextAlign="Middle">
+				<text><![CDATA[Preço]]></text>
+			</element>
+			<element kind="textField" uuid="b68a5245-7efd-43ca-b837-a2899a2ec719" x="57" y="40" width="153" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " + String.format("R$ %.2f",$F{produto.preco})]]></expression>
+			</element>
+			<element kind="staticText" uuid="6a281719-d770-4741-9998-2ebbd8aa4bbe" x="220" y="20" width="80" height="20" bold="false" vTextAlign="Middle">
+				<text><![CDATA[Categoria]]></text>
+			</element>
+			<element kind="staticText" uuid="aae8ec02-886a-4cca-aef9-e9da8d793551" x="220" y="41" width="80" height="20" bold="false" vTextAlign="Middle">
+				<text><![CDATA[Data de criação]]></text>
+			</element>
+			<element kind="textField" uuid="d86a2465-fae3-45ac-a6ca-ae6684100989" x="300" y="22" width="180" height="18" vTextAlign="Middle">
+				<expression><![CDATA["  " + $F{produto.categoriaFormatada}]]></expression>
+			</element>
+			<element kind="textField" uuid="9a744460-1dba-41f9-8fbd-390c23347d4f" x="303" y="41" width="177" height="19" vTextAlign="Middle">
+				<expression><![CDATA["  "+ $F{produto.dataCriacaoFormatada}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="20" splitType="Stretch">
+		<element kind="textField" uuid="c19439da-e6c5-4207-8b98-7a17884c4753" x="500" y="0" width="70" height="20" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+</jasperReport>

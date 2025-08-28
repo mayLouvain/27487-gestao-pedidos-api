@@ -1,43 +1,52 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
-<jasperReport name="Blank_A4" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2cd56e8-ffc2-4ffd-93b8-09df0bdb5d23">
-	<parameter name="produtos" class="java.util.Collection"/>
+<jasperReport name="subreport_produtos" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2cd56e8-ffc2-4ffd-93b8-09df0bdb5d23">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="pedidos" class="java.util.Collection"/>
 	<query language="sql"><![CDATA[]]></query>
-	<field name="descricaoProduto" class="java.lang.String"/>
-	<field name="precoProduto" class="java.math.BigDecimal"/>
-	<field name="categoriaProduto" class="java.lang.String"/>
-	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="valorTotal" class="java.math.BigDecimal"/>
+	<field name="statusFormatado" class="java.lang.String"/>
+	<field name="dataCriacaoFormatada" class="java.lang.String"/>
 	<background splitType="Stretch"/>
-	<columnHeader height="21" splitType="Stretch">
-		<element kind="staticText" uuid="bfc8f50e-5213-4cc6-8d9d-b5ea5aa476be" x="0" y="0" width="150" height="21" vTextAlign="Middle">
-			<text><![CDATA[Descrição]]></text>
+	<columnHeader height="43" splitType="Stretch">
+		<element kind="staticText" uuid="bfc8f50e-5213-4cc6-8d9d-b5ea5aa476be" mode="Opaque" x="0" y="22" width="150" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Código]]></text>
 			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
+				<topPen lineWidth="0.0" lineStyle="Solid"/>
 				<leftPen lineWidth="0.5"/>
+				<bottomPen lineWidth="0.5"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="fb752181-cd3a-4d94-9622-8892dffa42f6" mode="Opaque" x="150" y="22" width="110" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Valor total]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid"/>
+				<leftPen lineWidth="0.0"/>
+				<bottomPen lineWidth="0.5"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="9987ae50-c546-4a66-bbfd-3f234a6fe6a5" mode="Opaque" x="260" y="22" width="143" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Status]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid"/>
+				<leftPen lineWidth="0.0"/>
+				<bottomPen lineWidth="0.5"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="8a50c208-66f8-4394-9619-4416b490bae0" mode="Opaque" x="403" y="22" width="116" height="21" backcolor="#F7F7F7" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Data de criação]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid"/>
+				<leftPen lineWidth="0.0"/>
 				<bottomPen lineWidth="0.5"/>
 				<rightPen lineWidth="0.5" lineStyle="Solid"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="fb752181-cd3a-4d94-9622-8892dffa42f6" x="150" y="0" width="110" height="21" vTextAlign="Middle">
-			<text><![CDATA[  Preço
-]]></text>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="9987ae50-c546-4a66-bbfd-3f234a6fe6a5" x="260" y="0" width="117" height="21" vTextAlign="Middle">
-			<text><![CDATA[Categoria Produto]]></text>
-			<box>
-				<topPen lineWidth="0.5" lineStyle="Solid"/>
-				<leftPen lineWidth="0.5"/>
-				<bottomPen lineWidth="0.5"/>
-				<rightPen lineWidth="0.5" lineStyle="Solid"/>
-			</box>
-		</element>
-		<element kind="staticText" uuid="8a50c208-66f8-4394-9619-4416b490bae0" x="377" y="0" width="116" height="21" vTextAlign="Middle">
-			<text><![CDATA[Quantidade]]></text>
+		<element kind="staticText" uuid="e3e41fbf-0a70-4611-9a26-822c31d899f8" mode="Opaque" x="0" y="0" width="519" height="21" backcolor="#F7F7F7" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Pedidos]]></text>
 			<box>
 				<topPen lineWidth="0.5" lineStyle="Solid"/>
 				<leftPen lineWidth="0.5"/>
@@ -49,7 +58,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<element kind="textField" uuid="323d05ad-d252-4433-8c71-1a395a74192b" x="0" y="0" width="150" height="20" vTextAlign="Middle">
-				<expression><![CDATA[$F{descricaoProduto}]]></expression>
+				<expression><![CDATA["  " + $F{id}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
 					<leftPen lineWidth="0.5"/>
@@ -58,7 +67,7 @@
 				</box>
 			</element>
 			<element kind="textField" uuid="644d9ff5-7239-4780-a982-9a130709fbfa" x="150" y="0" width="110" height="20" vTextAlign="Middle">
-				<expression><![CDATA[$F{precoProduto}]]></expression>
+				<expression><![CDATA["  " + String.format("R$ %.2f",$F{valorTotal})]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
 					<leftPen lineWidth="0.5"/>
@@ -66,8 +75,8 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="a988f7d5-18c4-4e0f-94e5-a1cb6cc46d69" x="260" y="0" width="117" height="20" vTextAlign="Middle">
-				<expression><![CDATA[$F{categoriaProduto}]]></expression>
+			<element kind="textField" uuid="a988f7d5-18c4-4e0f-94e5-a1cb6cc46d69" x="260" y="0" width="143" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " +$F{statusFormatado}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
 					<leftPen lineWidth="0.5"/>
@@ -75,8 +84,8 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 			</element>
-			<element kind="textField" uuid="bdcaf4b2-06dc-4b14-968c-a204223c924e" x="377" y="0" width="116" height="20" vTextAlign="Middle">
-				<expression><![CDATA[$F{quantidade}]]></expression>
+			<element kind="textField" uuid="bdcaf4b2-06dc-4b14-968c-a204223c924e" x="403" y="0" width="116" height="20" vTextAlign="Middle">
+				<expression><![CDATA["  " +$F{dataCriacaoFormatada}]]></expression>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid"/>
 					<leftPen lineWidth="0.5"/>

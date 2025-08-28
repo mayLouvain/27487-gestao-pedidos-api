@@ -32,7 +32,7 @@ public class ProdutoService {
 	}
 
 	public ProdutoModel criar(ProdutoModel produto) {
-		boolean existeProduto = produtoRepository.existsByDescricao(produto.getDescricao());
+		boolean existeProduto = produtoRepository.existsByDescricaoIgnoreCase(produto.getDescricao());
 
 		if (existeProduto) {
 			throw new ProdutoJaExisteException("produto.jaExistente");

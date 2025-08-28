@@ -8,5 +8,6 @@ import com.br.gestaoPedidos.produtos.model.ProdutoModel;
 @Repository
 public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long> {
 
-	boolean existsByDescricao(String descricao);
+	boolean existsByDescricaoIgnoreCase(String descricao);
+
 }

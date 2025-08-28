@@ -1,11 +1,17 @@
 package com.br.gestaoPedidos.relatorios.dto;
 
-import java.util.UUID;
+import java.time.OffsetDateTime;
+
+import jakarta.validation.constraints.NotNull;
 
 public record RelatorioDTO(
-					String dataInicio,
-					String dataFim,
-					UUID idProduto
-        		) {
+
+		@NotNull(message = "{relatorio.dataInicio.NotNull}") 
+		OffsetDateTime dataInicio,
+
+		@NotNull(message = "{relatorio.dataFim.NotNull}")
+		OffsetDateTime dataFim,
+
+		boolean agrupaProduto) {
 
 }
