@@ -28,5 +28,11 @@ Foi utilizado o Maven como gerenciador de dependências e criados scripts para f
   - `start-linux-dev.sh`
   - `start-linux-prod.sh`
 
-Após iniciar, a documentação das APIs está disponível em:
+## Acesso à documentação da API
+
+Após iniciar a aplicação, acesse:
+
+http://localhost:8080/swagger-ui/index.html#/
+
+## Como rodar testes
 
