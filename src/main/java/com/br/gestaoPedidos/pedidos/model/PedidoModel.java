@@ -38,13 +38,6 @@ public class PedidoModel {
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PedidoProdutoModel> produtos;
 
-	public void atualizarProdutos(List<PedidoProdutoModel> produtos) {
-		if (!this.produtos.isEmpty()) {
-			this.produtos.clear();
-		}
-		this.produtos.addAll(produtos);
-	}
-
 	public Long getId() {
 		return id;
 	}

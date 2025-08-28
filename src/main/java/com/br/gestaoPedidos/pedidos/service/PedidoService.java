@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.br.gestaoPedidos.pedidos.exception.PedidoNaoEncontradoException;
 import com.br.gestaoPedidos.pedidos.model.PedidoModel;
+import com.br.gestaoPedidos.pedidos.model.PedidoProdutoModel;
+import com.br.gestaoPedidos.pedidos.repository.PedidoProdutoRepository;
 import com.br.gestaoPedidos.pedidos.repository.PedidoRepository;
 import com.br.gestaoPedidos.produtos.exception.ProdutoNaoEncontradoException;
 import com.br.gestaoPedidos.produtos.repository.ProdutoRepository;
@@ -21,10 +23,13 @@ public class PedidoService {
 
 	private final PedidoRepository pedidoRepository;
 	private final ProdutoRepository produtoRepository;
+	private final PedidoProdutoRepository pedidoProdutoRepository;
 
-	public PedidoService(PedidoRepository pedidoRepository, ProdutoRepository produtoRepository) {
+	public PedidoService(PedidoRepository pedidoRepository, ProdutoRepository produtoRepository,
+			PedidoProdutoRepository pedidoProdutoRepository) {
 		this.pedidoRepository = pedidoRepository;
 		this.produtoRepository = produtoRepository;
+		this.pedidoProdutoRepository = pedidoProdutoRepository;
 	}
 
 	public List<PedidoModel> listar() {
@@ -40,7 +45,9 @@ public class PedidoService {
 
 		pedido.setDataCriacao(LocalDateTime.now());
 		if (!Objects.isNull(pedido.getProdutos())) {
-			atualizarCamposProdutosPedidos(pedido);
+			var produtos = atualizarCamposProdutosPedidos(pedido, null);
+			pedido.getProdutos().clear();
+			pedido.getProdutos().addAll(produtos);
 			pedido.setValorTotal(calcularValorTotal(pedido));
 		}
 
@@ -50,18 +57,16 @@ public class PedidoService {
 	public PedidoModel alterar(Long id, PedidoModel pedido) {
 
 		PedidoModel pedidoExistente = buscarPorId(id);
+		pedidoProdutoRepository.deleteAllByPedidoId(id);
 
 		pedidoExistente.setCpf(pedido.getCpf());
 		pedidoExistente.setDataAlteracao(LocalDateTime.now());
 		pedidoExistente.setStatus(pedido.getStatus());
-		pedidoExistente.atualizarProdutos(pedido.getProdutos());
 
 		if (!Objects.isNull(pedido.getProdutos())) {
-			atualizarCamposProdutosPedidos(pedidoExistente);
+			pedidoExistente.getProdutos().addAll(atualizarCamposProdutosPedidos(pedido, pedidoExistente));
 			pedidoExistente.setValorTotal(calcularValorTotal(pedidoExistente));
-			pedidoExistente.getProdutos().addAll(pedido.getProdutos());
 		}
-
 		return pedidoRepository.save(pedidoExistente);
 
 	}
@@ -70,13 +75,19 @@ public class PedidoService {
 		pedidoRepository.deleteById(id);
 	}
 
-	private void atualizarCamposProdutosPedidos(PedidoModel pedido) {
-		pedido.getProdutos().stream().forEach(pedidoProduto -> {
-			var produto = produtoRepository.findById(pedidoProduto.getId().getProdutoId())
+	private List<PedidoProdutoModel> atualizarCamposProdutosPedidos(PedidoModel pedido, PedidoModel pedidoExistente) {
+		List<PedidoProdutoModel> novosProdutos = pedido.getProdutos().stream().map(dto -> {
+			var produto = produtoRepository.findById(dto.getId().getProdutoId())
 					.orElseThrow(() -> new ProdutoNaoEncontradoException("produto.naoEncontrado"));
-			pedidoProduto.setPedido(pedido);
+
+			PedidoProdutoModel pedidoProduto = new PedidoProdutoModel();
+			pedidoProduto.setPedido(!Objects.isNull(pedidoExistente) ? pedidoExistente : pedido);
 			pedidoProduto.setProduto(produto);
-		});
+			pedidoProduto.setQuantidade(dto.getQuantidade());
+			return pedidoProduto;
+		}).toList();
+
+		return novosProdutos;
 	}
 
 	private BigDecimal calcularValorTotal(PedidoModel pedido) {
