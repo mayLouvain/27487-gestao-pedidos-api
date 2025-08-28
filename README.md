@@ -1,4 +1,4 @@
-# Gestão de Pedidos
+# Gestão de Pedidos - API
 API responsável pela gestão de pedidos. Teste técnico 27487. 
 
 ## Tecnologias Utilizadas
