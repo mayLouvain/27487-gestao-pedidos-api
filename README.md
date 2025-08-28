@@ -28,7 +28,7 @@ Foi utilizado o Maven como gerenciador de dependências e criados scripts para f
   - `start-linux-dev.sh`
   - `start-linux-prod.sh`
 
-## Acesso à documentação da API
+Projeto estático do 
 
 Após iniciar a aplicação, acesse:
 
