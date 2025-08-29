@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.gestaoPedidos.relatorios.dto.RelatorioDTO;
 import com.br.gestaoPedidos.relatorios.service.RelatorioService;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import net.sf.jasperreports.engine.JRException;
 
 @RestController
@@ -30,10 +28,8 @@ public class RelatorioController {
 	@Autowired
 	private RelatorioService service;
 
-//	@Operation(summary = "Gera relatório de pedidos em PDF", responses = {
-//			@ApiResponse(responseCode = "200", description = "PDF gerado", content = @Content(mediaType = "application/pdf")) })
 	@PostMapping(value = "/pedidos")
-	public ResponseEntity<?> gerarRelatorio(@RequestBody RelatorioDTO filtro) throws JRException {
+	public ResponseEntity<?> gerarRelatorio(@Valid @RequestBody RelatorioDTO filtro) throws JRException {
 		byte[] pdf = service.gerarRelatorioPedidos(filtro);
 
 		HttpHeaders headers = new HttpHeaders();
