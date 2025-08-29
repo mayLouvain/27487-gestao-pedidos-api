@@ -1,6 +1,20 @@
 # Gestão de Pedidos - API
 API responsável pela gestão de pedidos. Teste técnico 27487. 
 
+
+Este projeto tem como objetivo realizar a gestão de pedidos, permitindo operações essenciais de CRUD para os seguintes dominios:
+- Pedido  
+  - Listar
+  - Criar/Editar
+  - Excluir
+- Produto
+  - Listar
+  - Criar/Editar
+  - Excluir
+- Relatório
+  - Gerar
+
+
 ## Tecnologias Utilizadas
 O projeto foi implementado utilizando as seguintes tecnologias:
 
